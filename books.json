@@ -1,0 +1,44 @@
+[
+    {
+        "book_id": 9,
+        "title": "sad",
+        "author": "sad",
+        "year": "12",
+        "status": "в наличии"
+    },
+    {
+        "book_id": 11,
+        "title": "sad",
+        "author": "23",
+        "year": "12",
+        "status": "в наличии"
+    },
+    {
+        "book_id": 12,
+        "title": "фы",
+        "author": "фа",
+        "year": "12",
+        "status": "в наличии"
+    },
+    {
+        "book_id": 13,
+        "title": "asd",
+        "author": "asd",
+        "year": "asd",
+        "status": "в наличии"
+    },
+    {
+        "book_id": 14,
+        "title": "sad",
+        "author": "asd",
+        "year": "asd",
+        "status": "в наличии"
+    },
+    {
+        "book_id": 15,
+        "title": "фыв",
+        "author": "фыв",
+        "year": 197,
+        "status": "в наличии"
+    }
+]
