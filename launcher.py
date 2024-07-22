@@ -1,11 +1,11 @@
 from main_logic import BookOperations
 
 
-def main():
+def main() -> None:
     books_operations = BookOperations()
 
 # Функции меню
-    def first_choice():
+    def first_choice() -> None:
         title = input("Введите название книги: ")
         author = input("Введите автора книги: ")
         while True:
@@ -17,7 +17,7 @@ def main():
                 print("Ошибка: Введите корректный год (четыре цифры).")
         books_operations.add_book(title, author, year)
 
-    def second_choice():
+    def second_choice() -> None:
         while True:
             try:
                 book_id = int(input("Введите ID книги для удаления: "))
@@ -26,7 +26,7 @@ def main():
                 print("Ошибка: Введите целое число для ID книги.")
         books_operations.delete_book(book_id)
 
-    def third_choice():
+    def third_choice() -> None:
         search_term = input("Введите название, автора или год для поиска: ")
         results = books_operations.search_book(search_term)
         if results:
@@ -36,11 +36,11 @@ def main():
         else:
             print("Книги не найдены.")
 
-    def fourth_choice():
+    def fourth_choice() -> None:
         print("Список книг в библиотеке:")
         books_operations.show_books()
 
-    def fifth_choice():
+    def fifth_choice() -> None:
         book_id = int(input("Введите ID книги для изменения статуса: "))
         new_status = input("Введите новый статус (в наличии/выдана): ")
         books_operations.change_status(book_id, new_status)

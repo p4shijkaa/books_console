@@ -3,17 +3,17 @@ import os
 
 
 class Book:
-    def __init__(self, book_id, title, author, year, status):
+    def __init__(self, book_id, title, author, year, status) -> None:
         self.book_id = book_id
         self.title = title
         self.author = author
         self.year = year
         self.status = status
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'ID: {self.book_id}, Title: "{self.title}", Author: {self.author}, Year: {self.year}, Status: {self.status}'
 
-    def convert_to_dict(self):
+    def convert_to_dict(self) -> dict:
         return {
             'book_id': self.book_id,
             'title': self.title,
@@ -24,13 +24,14 @@ class Book:
 
 
 class BookOperations:
-    def __init__(self, filename='books.json'):
+    def __init__(self, filename='books.json') -> None:
         self.filename = filename
         self.books = {}
         self.next_id = 1
         self.load_books()
 
-    def load_books(self):
+    # Проверка существования json файла и его загрузка
+    def load_books(self) -> None:
         if os.path.exists(self.filename):
             with open(self.filename, 'r', encoding='utf-8') as file:
                 data = json.load(file)
@@ -38,18 +39,21 @@ class BookOperations:
                 if self.books:
                     self.next_id = max(self.books.keys()) + 1
 
-    def save_books(self):
+    # Сохранение данных в json файл
+    def save_books(self) -> None:
         with open(self.filename, 'w', encoding='utf-8') as file:
             json.dump([book.convert_to_dict() for book in self.books.values()], file, ensure_ascii=False, indent=4)
 
-    def add_book(self, title, author, year):
+    # Добавление пользователем книги
+    def add_book(self, title, author, year) -> None:
         book = Book(self.next_id, title, author, year, status='в наличии')
         self.books[self.next_id] = book
         self.next_id += 1
         self.save_books()
         print(f'Книга "{title}" добавлена!')
 
-    def delete_book(self, book_id):
+    # Удаление пользователем книги
+    def delete_book(self, book_id) -> None:
         if book_id in self.books:
             deleted_book = self.books.pop(book_id)
             self.save_books()
@@ -57,7 +61,8 @@ class BookOperations:
         else:
             print('Ошибка: Книга с таким ID не найдена.')
 
-    def search_book(self, search_param):
+    # Поиск книги по одному из параметров
+    def search_book(self, search_param) -> list[Book]:
         results = [
             book for book in self.books.values()
             if search_param.lower() in book.title.lower() or
@@ -66,14 +71,16 @@ class BookOperations:
         ]
         return results
 
-    def show_books(self):
+    # Показ всех книг
+    def show_books(self) -> None:
         if not self.books:
             print("Библиотека пуста.")
         else:
             for book in self.books.values():
                 print(book)
 
-    def change_status(self, book_id, new_status):
+    # Изменение статуса книги
+    def change_status(self, book_id, new_status) -> None:
         if book_id in self.books:
             if new_status in ['в наличии', 'выдана']:
                 self.books[book_id].status = new_status
