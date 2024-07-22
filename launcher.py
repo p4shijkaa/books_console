@@ -4,12 +4,13 @@ from main_logic import BookOperations
 def main():
     books_operations = BookOperations()
 
+# Функции меню
     def first_choice():
         title = input("Введите название книги: ")
         author = input("Введите автора книги: ")
         while True:
             year = input("Введите год издания: ")
-            if year.isdigit():
+            if year.isdigit() and len(year) == 4:
                 year = int(year)
                 break
             else:
